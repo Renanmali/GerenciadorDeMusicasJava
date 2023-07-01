@@ -59,7 +59,6 @@ public class PersistenciaUsuario {
             System.err.println(x);
             return null;
         }
-        System.out.println(lista);
         return lista;
     }
 }

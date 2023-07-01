@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import Persistencia.PersistenciaUsuario;
 
-public class BancoUsuarios {
+public class BancoUsuarios  {
     private int nextId = 0;
     private String nome_banco;
     // Criando o banco de usuários  
