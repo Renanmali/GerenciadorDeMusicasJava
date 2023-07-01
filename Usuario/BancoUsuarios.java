@@ -44,6 +44,12 @@ public class BancoUsuarios  {
         return geral.get(id);
     }
 
+
+
+    public int size() {
+        return 0;
+    }
+
 }
 
 

@@ -12,13 +12,16 @@ import Usuario.UsuarioComum;
 public class Main {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        
+
         // carregaUsuarios();
         // Criando o banco de músicas //
         // BancoMusicas bancoMusicas = new BancoMusicas();
-        // BancoMusicas.addMusica(new MusicaCancao("Ok", "21/06/2023", "Teto", "rap", 300, "Olá"));
-        // BancoMusicas.addMusica(new MusicaInstrumental("Rio de Janeiro", "23/06/2023", "Xamã", "rap", 400, "Sol"));
-        // BancoMusicas.addMusica(new MusicaCancao("real", "21/06/2023", "Teto", "rap", 300, "Olá"));
+        // BancoMusicas.addMusica(new MusicaCancao("Ok", "21/06/2023", "Teto", "rap",
+        // 300, "Olá"));
+        // BancoMusicas.addMusica(new MusicaInstrumental("Rio de Janeiro", "23/06/2023",
+        // "Xamã", "rap", 400, "Sol"));
+        // BancoMusicas.addMusica(new MusicaCancao("real", "21/06/2023", "Teto", "rap",
+        // 300, "Olá"));
         // System.out.println(BancoMusicas.getById(0).getData());
         // System.out.println(BancoMusicas.getById(1));
         // UsuarioComum user = new UsuarioComum("renan", "renanmali", "151021Al");
@@ -44,24 +47,30 @@ public class Main {
         System.out.println("O que você quer fazer?");
         System.out.println("1- Login | 2- Criar uma conta");
         int inicio = teclado.nextInt();
-        if(inicio == 1){
+        if (inicio == 1) {
             System.out.println("Digite seu login");
             String login = teclado.next();
             System.out.println("Digite a sua senha");
             String senha = teclado.next();
             bancoUsuarios.readUsuarios();
-            if(login == bancoUsuarios.getById(0).getLogin() && senha == bancoUsuarios.getById(0).getSenha()){
-                System.out.println("OK");
+            for (int i = 0; i <bancoUsuarios.size(); i++) {
+                String comparaLogin = bancoUsuarios.getById(i).getLogin();
+                String comparaSenha = bancoUsuarios.getById(i).getSenha();
+                if (login.equals(comparaLogin) && senha.equals(comparaSenha)) {
+                    System.out.println("OK");
+                } 
+                else {
+                    System.out.println("Login e senha não são correspondentes");
+                }
+
             }
 
-
-        }
-        else if(inicio == 2){
+        } else if (inicio == 2) {
             System.out.println("Qual tipo de usuário quer adicionar?");
             System.out.println("1-Administrador | 2-Comum");
             int usuario = teclado.nextInt();
-            if(usuario == 1){
-                System.out.printf("Digite o nome do usuário: \n");                
+            if (usuario == 1) {
+                System.out.printf("Digite o nome do usuário: \n");
                 String nome = teclado.next();
                 System.out.printf("Digite o login do usuário: \n");
                 String login = teclado.next();
@@ -71,9 +80,8 @@ public class Main {
                 bancoUsuarios.addUsuario(userAdm);
                 bancoUsuarios.saveUsuarios();
                 System.out.println("Cadastro concluído com sucesso, retorne a página inicial e se divirta ! \n");
-            }
-            else if(usuario == 2){
-                System.out.printf("Digite o nome do usuário: \n");                
+            } else if (usuario == 2) {
+                System.out.printf("Digite o nome do usuário: \n");
                 String nome = teclado.next();
                 System.out.printf("Digite o login do usuário: \n");
                 String login = teclado.next();
@@ -83,14 +91,12 @@ public class Main {
                 bancoUsuarios.addUsuario(userComum);
                 bancoUsuarios.saveUsuarios();
                 System.out.println("Cadastro concluído com sucesso, retorne a página inicial e se divirta ! \n");
-            }
-            else{
+            } else {
                 System.out.println("ERROR! Digite um comando válido.");
                 System.out.println("Sessão finalizada");
             }
 
-        }
-        else{
+        } else {
             System.out.println("ERROR! Digite um comando válido.");
         }
     }

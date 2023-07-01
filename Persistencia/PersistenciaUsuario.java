@@ -9,17 +9,17 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import Usuario.BancoUsuarios;
 import Usuario.Usuario;
 
 public class PersistenciaUsuario {
     private static String dir = "DadosUsuarios/";
-
+    
     public static void saveUsuarios(List<Usuario> usuarios) {
         int i = 0;
         for (Usuario usuario : usuarios) {
             if (usuario != null) {
-                try (FileOutputStream fos = new FileOutputStream(dir + String.valueOf(usuario.getId()));
+                try (FileOutputStream fos = new FileOutputStream(dir +String.valueOf(usuario.getId()));
                         ObjectOutputStream oos = new ObjectOutputStream(fos)) {
                     oos.writeObject(usuario);
                 } catch (IOException e) {
@@ -42,8 +42,8 @@ public class PersistenciaUsuario {
         Path dir1 = FileSystems.getDefault().getPath(dir);
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir1)) {
-            while (lista.size() < new File(dir).list().length)
-                lista.add(null);
+            while (lista.size() < new File(dir).list().length){
+                lista.add(null);}
             for (Path file : stream) {
                 try (FileInputStream fis = new FileInputStream(dir + file.getFileName());
                         ObjectInputStream ois = new ObjectInputStream(fis)) {
