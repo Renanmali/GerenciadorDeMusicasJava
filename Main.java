@@ -42,50 +42,72 @@ public class Main {
         // System.out.println(BancoMusicas.getById(0));
 
         BancoUsuarios bancoUsuarios = new BancoUsuarios("Spotify");
-        bancoUsuarios.readUsuarios();
-
         System.out.println("O que você quer fazer?");
         System.out.println("1- Login | 2- Criar uma conta");
         int inicio = teclado.nextInt();
         if (inicio == 1) {
-            System.out.println("Digite seu login");
-            String login = teclado.next();
-            System.out.println("Digite a sua senha");
-            String senha = teclado.next();
-            bancoUsuarios.readUsuarios();
-            for (int i = 0; i <bancoUsuarios.size(); i++) {
-                String comparaLogin = bancoUsuarios.getById(i).getLogin();
-                String comparaSenha = bancoUsuarios.getById(i).getSenha();
+            System.out.println("Qual tipo de usuário é você? ");
+            System.out.println("3- Administrador | 4- Comum");
+            int entrada = teclado.nextInt();
+            if (entrada == 3) {
+                System.out.println("Digite seu login");
+                String login = teclado.next();
+                System.out.println("Digite a sua senha");
+                String senha = teclado.next();
+                bancoUsuarios.readUsuarios();
+                String comparaLogin = bancoUsuarios.getById(0).getLogin();
+                String comparaSenha = bancoUsuarios.getById(0).getSenha();
                 if (login.equals(comparaLogin) && senha.equals(comparaSenha)) {
-                    System.out.println("OK");
-                } 
-                else {
+                    System.out.println("Selecione o que deseja acessar: ");
+                    System.out.println("1- Músicas | 2- Usuários");
+                    int entrar = teclado.nextInt();
+                    if (entrar == 1) {
+                        System.out.println("Selecione o que deseja fazer: ");
+                        System.out.println("1- Adicionar Música | 2- Remover Música | 3- Editar Música");
+                    }
+                    else if(entrar == 2){
+                        System.out.println("1- Adicionar Usuário | 2- Remover Usuário");
+                    }
+                } else {
                     System.out.println("Login e senha não são correspondentes");
                 }
-
+            } else if (entrada == 4) {
+                System.out.println("Digite seu login");
+                String login = teclado.next();
+                System.out.println("Digite a sua senha");
+                String senha = teclado.next();
+                bancoUsuarios.readUsuarios();
+                String comparaLogin = bancoUsuarios.getById(0).getLogin();
+                String comparaSenha = bancoUsuarios.getById(0).getSenha();
+                if (login.equals(comparaLogin) && senha.equals(comparaSenha)) {
+                    System.out.println("Selecione o que deseja acessar");
+                } else {
+                    System.out.println("Login e senha não são correspondentes");
+                }
             }
 
         } else if (inicio == 2) {
             System.out.println("Qual tipo de usuário quer adicionar?");
-            System.out.println("1-Administrador | 2-Comum");
+            System.out.println("3- Administrador | 4- Comum");
             int usuario = teclado.nextInt();
-            if (usuario == 1) {
+            if (usuario == 3) {
                 System.out.printf("Digite o nome do usuário: \n");
                 String nome = teclado.next();
                 System.out.printf("Digite o login do usuário: \n");
                 String login = teclado.next();
-                System.out.println("Digite a senha do usuário: ");
+                System.out.printf("Digite a senha do usuário: \n");
                 String senha = teclado.next();
                 UsuarioAdmin userAdm = new UsuarioAdmin(nome, login, senha);
+                bancoUsuarios.readUsuarios();
                 bancoUsuarios.addUsuario(userAdm);
                 bancoUsuarios.saveUsuarios();
                 System.out.println("Cadastro concluído com sucesso, retorne a página inicial e se divirta ! \n");
-            } else if (usuario == 2) {
+            } else if (usuario == 4) {
                 System.out.printf("Digite o nome do usuário: \n");
                 String nome = teclado.next();
                 System.out.printf("Digite o login do usuário: \n");
                 String login = teclado.next();
-                System.out.println("Digite a senha do usuário: ");
+                System.out.printf("Digite a senha do usuário: \n");
                 String senha = teclado.next();
                 UsuarioComum userComum = new UsuarioComum(nome, login, senha);
                 bancoUsuarios.addUsuario(userComum);
