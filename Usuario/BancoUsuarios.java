@@ -13,8 +13,6 @@ public class BancoUsuarios  {
         this.nome_banco = nome_banco;
     }
 
-
-
     public void saveUsuarios(){
         PersistenciaUsuario.saveUsuarios(geral);
 
@@ -38,6 +36,10 @@ public class BancoUsuarios  {
         
         geral.set(id, null);
 
+    }
+
+    public ArrayList<Usuario> getGeral(){
+        return this.geral;
     }
 
     public Usuario getById(int id){
