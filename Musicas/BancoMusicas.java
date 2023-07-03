@@ -1,11 +1,11 @@
 package Musicas;
 import java.util.ArrayList;
-
+import java.io.File;
 import Persistencia.PersistenciaMusicas;
 
 public class BancoMusicas {
     private static int nextId = 0;
-
+    private static String dir = "DadosMusicas/";
     // Criando o banco das músicas do catálogo 
     private static ArrayList<Musica> geral = new ArrayList<Musica>();
 
@@ -13,7 +13,7 @@ public class BancoMusicas {
         
         // Passar após a variável o ++, ele usa a váriavel e depois incrementa o ++ //
         
-        musica.setId(nextId++);
+        musica.setId(new File(dir).list().length);
         geral.add(musica.getId(), musica);
 
     }

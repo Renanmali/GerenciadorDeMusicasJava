@@ -45,6 +45,9 @@ public class Main {
         
         // Inicializando o Banco de Usuários e o Banco de Músicas // 
         
+
+
+
         BancoMusicas bancoMusicas = new BancoMusicas();
         BancoUsuarios bancoUsuarios = new BancoUsuarios("Armazena");
         
@@ -99,7 +102,7 @@ public class Main {
                                         
                                         
                                         System.out.printf("Qual o título da música? ") ; 
-                                        String titulo = teclado.nextLine();
+                                        String titulo = teclado.next();
                                         System.out.printf("Qual a data de criação da música? ");
                                         String data = teclado.next();
                                         System.out.printf("Quais são os autores da música? ");
@@ -109,8 +112,9 @@ public class Main {
                                         System.out.printf("Qual a duração da música? Em segundos");
                                         int duracao = teclado.nextInt();
                                         System.out.println("Qual a letra da música?  ");
-                                        String letra = teclado.nextLine();
+                                        String letra = teclado.next();
 
+                                        bancoMusicas.readMusicas();
                                         BancoMusicas.addMusica(new MusicaCancao(titulo, data, autores, genero, duracao, letra));
                                         bancoMusicas.saveMusicas();
 
@@ -121,7 +125,7 @@ public class Main {
                                     else if(tipoMusica == 2){
 
                                         System.out.printf("Qual o título da música? ") ; 
-                                        String titulo = teclado.nextLine();
+                                        String titulo = teclado.next();
                                         System.out.printf("Qual a data de criação da música? ");
                                         String data = teclado.next();
                                         System.out.printf("Quais são os autores da música? ");
@@ -131,8 +135,10 @@ public class Main {
                                         System.out.printf("Qual a duração da música? Em segundos");
                                         int duracao = teclado.nextInt();
                                         System.out.println("Qual a partitura da música?  ");
-                                        String partitura = teclado.nextLine();
+                                        String partitura = teclado.next();
 
+                                        
+                                        bancoMusicas.readMusicas();
                                         BancoMusicas.addMusica(new MusicaInstrumental(titulo, data, autores, genero, duracao, partitura));
                                         bancoMusicas.saveMusicas();
 
@@ -155,7 +161,10 @@ public class Main {
                                     
                                     verifica = -1;
                                 }
-                                else if(entrarMus == 2){}
+                                else if(entrarMus == 2){
+
+                                    System.out.println("Qual música vocẽ deseja remover? ");
+                                }
                                 else if(entrarMus == 3){}
                                 else{System.out.println("Erro! Digite um comando válido.");}
                             }
@@ -223,6 +232,7 @@ public class Main {
                 System.out.printf("Digite a senha do usuário: \n");
                 String senha = teclado.next();
                 UsuarioComum userComum = new UsuarioComum(nome, login, senha);
+                bancoUsuarios.readUsuarios();
                 bancoUsuarios.addUsuario(userComum);
                 bancoUsuarios.saveUsuarios();
                 System.out.println("Cadastro concluído com sucesso, retorne a página inicial e se divirta ! \n");
