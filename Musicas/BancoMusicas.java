@@ -13,7 +13,11 @@ public class BancoMusicas {
         
         // Passar após a variável o ++, ele usa a váriavel e depois incrementa o ++ //
         
-        musica.setId(new File(dir).list().length);
+        // persistencia implementada para a interface 
+        // musica.setId(new File(dir).list().length);
+
+        // Persistencia para rodar o teste
+        musica.setId(nextId);
         geral.add(musica.getId(), musica);
 
     }

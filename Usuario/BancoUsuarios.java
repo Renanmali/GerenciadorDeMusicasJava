@@ -29,7 +29,12 @@ public class BancoUsuarios {
     public void addUsuario(Usuario usuario) {
 
         // Passar após a variável o ++, ele usa a váriavel e depois incrementa o ++ //
-        usuario.setId(new File(dir).list().length);
+        
+        // persistencia para rodar com a interface
+        // usuario.setId(new File(dir).list().length);
+
+        // Persistencia para rodar o teste
+        usuario.setId(nextId++);
         geral.add(usuario.getId(), usuario);
 
     }
